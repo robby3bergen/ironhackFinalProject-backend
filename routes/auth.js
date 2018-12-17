@@ -32,8 +32,8 @@ router.post('/login', (req, res, next) => {
   }
 
   User.findOne({
-      username
-    })
+    username
+  })
     .then((user) => {
       if (!user) {
         return res.status(404).json({
@@ -52,7 +52,6 @@ router.post('/login', (req, res, next) => {
     .catch(next);
 });
 
-
 router.post('/signup', (req, res, next) => {
   const {
     username,
@@ -66,8 +65,8 @@ router.post('/signup', (req, res, next) => {
   }
 
   User.findOne({
-      username
-    }, 'username')
+    username
+  }, 'username')
     .then((userExists) => {
       if (userExists) {
         return res.status(422).json({
@@ -80,7 +79,7 @@ router.post('/signup', (req, res, next) => {
 
       const newUser = User({
         username,
-        password: hashPass,
+        password: hashPass
       });
 
       return newUser.save().then(() => {
