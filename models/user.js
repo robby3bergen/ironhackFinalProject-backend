@@ -6,9 +6,14 @@ const userSchema = new Schema({
   username: String,
   password: String,
   ingredients: [{
-    type: ObjectId,
-    ref: 'Ingredient',
-    preference: { enum: ['favorite', 'avoid'] }
+    ingredient_id: {
+      type: ObjectId,
+      ref: 'Ingredient'
+    },
+    preference: {
+      type: String,
+      enum: ['favorite', 'avoid']
+    }
   }]
 });
 
