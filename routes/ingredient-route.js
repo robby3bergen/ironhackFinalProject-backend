@@ -12,8 +12,8 @@ router.post('/list', (req, res, next) => {
     // find any ingredient inside the array of ingredient objects
     const { ingredients } = req.body;
     Ingredient.find({ name: ingredients })
-      .then((ingredientsInDB) => {
-        console.log('ingredientsInDB: ' + ingredientsInDB);
+      .select('_id')
+      .then((ingredientIds) => {
         // find user preference for ingredient
         User.findOne({ _id: req.session.currentUser._id })
           .populate('ingredients.ingredient_id')
